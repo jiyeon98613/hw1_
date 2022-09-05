@@ -14,6 +14,7 @@ struct Node
   {
     value = v;
     next = n;
+    
   }
 };
 

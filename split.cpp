@@ -11,16 +11,61 @@ the function below should be the only one in this file.
 */
 
 #include "split.h"
+#include <iostream>     // namespaces
+using namespace std;
 
 /* Add a prototype for a helper function here if you need */
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  /* Add code here */
-// WRITE YOUR CODE HERE
+  Node* ptr;
+  if(in != nullptr){ ptr= in->next;}
+  if(in == nullptr){return;} 
+  else
+  {
+  
+    if(in->value %2 == 0) // if this node has even number
+    {
+      //store this node to evens LL
+      evens = in; //double check if this means 'evens' head ptr pointing 'in's head ptr
+      evens->next = nullptr;
+      split(ptr, odds, evens->next);
+    } else 
+   {
+      odds = in;
+      odds->next = nullptr;
+      split(ptr, odds->next, evens);
+    }
+  }
+
+  
+  
+  //chech bugs
+  if(in != nullptr){
+    //cout <<"?"<<endl;
+    cout<< "ptr(backqard): "<<in->value<<endl;
+  }
+  if(odds != nullptr){
+    //cout <<"?"<<endl;
+    cout<< "odds (backqard): "<<odds->value<<endl;
+  }
+  //if(odds->next != nullptr){                                //problematic
+  //  cout <<"?"<<endl;
+  //  cout<< "odds->next (backqard): "<<odds->value<<endl;
+  //}
+  if(evens != nullptr){
+    //cout <<"?"<<endl;
+    cout<< "evens (backqard): "<<evens->value<<endl;
+  }
+  //if(evens->next != nullptr){
+  //  cout <<"?"<<endl;
+  //  cout<< "evens->next (backqard): "<<evens->value<<endl;
+  //}
+  
+
+
+  //delete in;
+  //end mechanism is not necessary Ig...
+  //I believe I don't have to delete the ptr here...
 
 }
-
-/* If you needed a helper function, write it here */
-
-// WRITE YOUR CODE HERE
